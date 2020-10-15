@@ -1,14 +1,37 @@
 -- Database Queries
 
 -- Find all customers with postal code 1010
+SELECT * FROM Customers
+where postalcode = '1010';
+
 12  	Cactus Comidas para llevar  	Patricio Simpson  	Cerrito 333  	Buenos Aires  	1010  	Argentina 
 54  	Océano Atlántico Ltda.  	Yvonne Moncada  	Ing. Gustavo Moncada 8585 Piso 20-A  	Buenos Aires  	1010  	Argentina 
 64  	Rancho grande  	Sergio Gutiérrez  	Av. del Libertador 900  	Buenos Aires  	1010  	Argentina 
 -- Find the phone number for the supplier with the id 11
+SELECT * FROM Suppliers
+where supplierID = 11;
+
 11  	Heli Süßwaren GmbH & Co. KG  	Petra Winkler  	Tiergartenstraße 5  	Berlin  	10785  	Germany  	(010) 9984510 
 -- List first 10 orders placed, sorted descending by the order date
+SELECT *
+FROM Orders
+ORDER by OrderDate DESC
+LIMIT 10;
 
+10248 	90 	5 	7/4/1996 	3 
+10249 	81 	6 	7/5/1996 	1 
+10250 	34 	4 	7/8/1996 	2 
+10251 	84 	3 	7/8/1996 	1 
+10252 	76 	4 	7/9/1996 	2 
+10253 	34 	3 	7/10/1996 	2 
+10254 	14 	5 	7/11/1996 	2 
+10255 	68 	9 	7/12/1996 	3 
+10256 	88 	3 	7/15/1996 	2 
+10257 	35 	4 	7/16/1996 	3 
 -- Find all customers that live in London, Madrid, or Brazil
+SELECT * FROM Customers
+WHERE City = 'London' OR City = 'Madrid' OR Country = 'Brazil';
+
 4  	Around the Horn  	Thomas Hardy  	120 Hanover Sq.  	London  	WA1 1DP  	UK 
 8  	Bólido Comidas preparadas  	Martín Sommer  	C/ Araquil, 67  	Madrid  	28023  	Spain 
 11  	B's Beverages  	Victoria Ashworth  	Fauntleroy Circus  	London  	EC2 5NT  	UK 
@@ -21,7 +44,14 @@
 
 -- Add a customer record for "The Shire", the contact name is "Bilbo Baggins" the address is -"1 Hobbit-Hole" in "Bag End", postal code "111" and the country is "Middle Earth"
 
+Insert into Customers (Country, CustomerName, Address, City, PostalCode)
+Values ('Middle Earth', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111')
+
 -- Update Bilbo Baggins record so that the postal code changes to "11122"
+
+Update Customers
+SET postalcode = '11122'
+WHERE customerid = 92;
 
 -- (Stretch) Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted
 
